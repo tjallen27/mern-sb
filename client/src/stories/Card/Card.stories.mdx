@@ -1,0 +1,19 @@
+<!--- Card.stories.mdx --->
+
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions';
+import { Card } from '../../components/Card/Card';
+
+<Meta title="/Molecule/Card" component={Card}  />
+
+# Card
+
+<Canvas>
+  <Story name="primary">
+    <Card>
+      <div><h3>This is a Card</h3></div>
+      <div>Subtitle</div>
+      <div>Description</div>
+    </Card>
+  </Story>
+</Canvas>

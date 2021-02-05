@@ -1,0 +1,24 @@
+<!--- Form.stories.mdx --->
+
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions';
+import { Form } from '../../components/Form/Form';
+import { Button } from '../../components/Button/Button';
+import { Input } from '../../components/Input/Input';
+
+<Meta title="/Organisms/Form" component={Form} />
+
+# Form
+
+<Canvas>
+  <Story name="standard">
+    <Form>
+      <h2>Form Title</h2>
+      <Input type="text" name="email" placeholder="Email" onChange={action('button-click')} />
+      <Input type="password" name="password" placeholder="Password" onChange={action('button-click')} />
+      <Button type="primary" shadow onClick={action('button-click')}>
+        Submit
+      </Button>
+    </Form>
+  </Story>
+</Canvas>

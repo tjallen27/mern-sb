@@ -1,0 +1,18 @@
+<!--- Input.stories.mdx --->
+
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions';
+import { Input } from '../../components/Input/Input';
+
+<Meta title="/Atoms/Input" component={Input} />
+
+# Input
+
+<Canvas>
+  <Story name="text">
+    <Input type="text" name="email" placeholder="Email" onChange={action('button-click')} />
+  </Story>
+  <Story name="password">
+    <Input type="password" name="password" placeholder="Password" onChange={action('button-click')} />
+  </Story>
+</Canvas>

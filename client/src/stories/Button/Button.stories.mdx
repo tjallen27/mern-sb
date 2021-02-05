@@ -1,0 +1,27 @@
+<!--- Button.stories.mdx --->
+
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions';
+import { Button } from '../../components/Button/Button';
+
+<Meta title="/Atoms/Button" component={Button} argTypes={{ onClick: { action: 'clicked' } }} />
+
+# Button
+
+<Canvas>
+  <Story name="primary">
+    <Button type="primary" onClick={action('button-click')}>
+      Primary
+    </Button>
+  </Story>
+  <Story name="secondary">
+    <Button type="secondary" onClick={action('button-click')}>
+      Secondary
+    </Button>
+  </Story>
+  <Story name="shadow">
+    <Button type="primary" shadow onClick={action('button-click')}>
+      Click Me!
+    </Button>
+  </Story>
+</Canvas>

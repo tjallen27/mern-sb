@@ -1,70 +1,100 @@
-# Getting Started with Create React App
+# Boilerplate React-Redux-Storybook-Mongo App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a show-off project. These are things it uses:
 
-## Available Scripts
+Front-End
 
-In the project directory, you can run:
+- React.js for component based app development
+- Redux for global state management
+- Storybook for component design and documentation
+- Firebase for User Authentication
+- Styled Components
+- React-Testing-Library (coming soon)
+- Persistant data (coming soon)
 
-### `npm start`
+Back-End
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Express.js API
+- Mongoose for db schema
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Run the app
 
-### `npm test`
+Clone the app and run `npm i` then `npm run dev`.
+This uses concurrent mode to run the client and the server at the same time.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Test Log In
 
-### `npm run build`
+- username: `test@email.com`
+- password: `password`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Run Storybook
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+First make sure you are in the client directory, then run `npm run storybook`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<img src="./client/public/assets/screenshot.png" alt="Screen Shot" />
 
-### `npm run eject`
+### Redux set-up
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Action creator example:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+import { AUTH_SIGN_UP } from './types';
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+export const authSignUp = (user) => {
+  return (dispatch) => {
+    dispatch({ type: AUTH_SIGN_UP, payload: user });
+  };
+};
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Reducer example:
 
-## Learn More
+```
+export default function authReducer(state = initialState, action) {
+  switch (action.type) {
+    case AUTH_SIGN_UP: {
+      return { ...state, currentUser: action.payload };
+    }
+    default:
+      return state;
+  }
+}
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Using within components
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Actions are dispatched in components using Redux hooks.
 
-### Code Splitting
+```
+import React from 'react'
+import { useDispatch } from 'react-redux'
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+export const CounterComponent = ({ value }) => {
+  const dispatch = useDispatch()
 
-### Analyzing the Bundle Size
+  return (
+    <div>
+      <span>{value}</span>
+      <button onClick={() => dispatch({ type: 'increment-counter' })}>
+        Increment counter
+      </button>
+    </div>
+  )
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+And Redux is accessed with useSelector(state => state.object)
 
-### Making a Progressive Web App
+```
+import React from 'react'
+import { useSelector } from 'react-redux'
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+export const CounterComponent = () => {
+  const counter = useSelector(state => state.counter)
+  return <div>{counter}</div>
+}
+```
 
-### Advanced Configuration
+## React Hook Forms
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This boiler plate uses react-hook-forms for handling form validation.

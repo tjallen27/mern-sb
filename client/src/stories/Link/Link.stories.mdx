@@ -1,0 +1,15 @@
+<!--- Link.stories.mdx --->
+
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions';
+import { Link } from '../../components/Link/Link';
+
+<Meta title="/Atoms/Link" component={Link} argTypes={{ onClick: { action: 'clicked' } }} />
+
+# Link
+
+<Canvas>
+  <Story name="Inline">
+    <Link onClick={action('Link-click')}>Click me</Link>
+  </Story>
+</Canvas>

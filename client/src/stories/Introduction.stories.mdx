@@ -1,0 +1,58 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introduction" />
+
+# EASTON Component Library
+
+This is a component library that I have built to use within person projects to ensure a consistent coding standards.
+
+- Styling: [styled-components](https://styled-components.com/)
+- Type Checking: [PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html)
+- Testing: [React-Testing-Library](https://testing-library.com/docs/react-testing-library/intro/)
+
+## Editor Settings
+
+- ESLint
+- Prettier
+
+## Color palette
+
+[https://colorhunt.co/palette/2763](https://colorhunt.co/palette/2763)
+
+## Example Component
+
+    import React from 'react';
+    import PropTypes from 'prop-types';
+    import './button.css';
+
+    export const Button = ({ children }) => {
+      return <button>{children}</button>;
+    };
+
+    Button.defaultProps = {};
+
+    Button.propTypes = {};
+
+## Example Story
+
+```
+<!--- Button.stories.mdx --->
+
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { Button } from '../../components/Button/Button';
+
+<Meta title="/Atoms/Button" component={Button} />
+
+# Button
+
+With `MDX` we can define a story for `Button` right in the middle of our
+Markdown documentation.
+
+<!--- This is your Story template function, shown here in React -->
+
+<Canvas>
+  <Story name="Button">
+    <Button>Button</Button>
+  </Story>
+</Canvas>
+```
